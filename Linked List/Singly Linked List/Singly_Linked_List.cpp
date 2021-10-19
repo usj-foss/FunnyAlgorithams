@@ -11,7 +11,6 @@ using namespace std;
 struct Node {
     Node *next;
     int data;
-    Node *prev;
 };
 
 class LinkedList {
@@ -36,12 +35,9 @@ void LinkedList::insertBeg(int x) {
         start = newNode;
         newNode->data = x;
         newNode->next = NULL;
-        newNode->prev = NULL;
     } else {
-        newNode->prev = NULL;
         newNode->data = x;
         newNode->next = start;
-        start->prev = newNode;
         start = newNode;
     }
     cout << "Element Inserted to End" << endl;
@@ -53,7 +49,6 @@ void LinkedList::insertEnd(int x) {
     if (start == NULL) {
         newNode->data = x;
         newNode->next = NULL;
-        newNode->prev = NULL;
         start = newNode;
     } else {
         newNode->data = x;
@@ -64,7 +59,6 @@ void LinkedList::insertEnd(int x) {
             ptr = ptr->next;
         }
         ptr->next = newNode;
-        newNode->prev = ptr;
         cout << "Node Inserted at the End";
     }
 }
@@ -82,19 +76,34 @@ void LinkedList::deleteBeg() {
 }
 
 void LinkedList::deleteEnd() {
+
     //If there is no data in the link list
     if (start == NULL) {
         cout << "Linked list is empty" << endl;
         return;
-    }
-    Node *ptr = start;
-    while (ptr->next != NULL) {    // Search for the last node
-        ptr = ptr->next;
+    }else if(start -> next == NULL)
+    {
+        start = NULL;
+        free(start);
+        printf("\nOnly node of the list deleted ...");
     }
 
-    ptr->prev->next = NULL;
-    free(ptr);
+    else
+    {
+        Node *ptr = start;
+        Node *ptr1;
+
+        while(ptr->next != NULL)
+        {
+            ptr1 = ptr;
+            ptr = ptr ->next;
+        }
+        ptr1->next = NULL;
+        free(ptr);
+        printf("\n Deleted Node from the last ...");
+    }
 }
+
 
 void LinkedList::deleteNode(int D) {
     Node *ptr = start;
@@ -106,8 +115,6 @@ void LinkedList::deleteNode(int D) {
         while (ptr->next->next != NULL) {
             ptr = ptr->next;
             if (ptr->data == D) {
-                ptr->prev->next = ptr->next;
-                ptr->next->prev = ptr->prev;
                 free(ptr);
                 cout << "Node with value " << D << " Deleted.";
                 return;
