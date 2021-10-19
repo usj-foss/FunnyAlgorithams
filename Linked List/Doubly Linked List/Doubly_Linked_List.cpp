@@ -1,3 +1,7 @@
+/*
+First add number of nodes you need and then,
+Insert Space Separated values when asked.
+*/
 #include <iostream>
 #include <cstdlib>
 
