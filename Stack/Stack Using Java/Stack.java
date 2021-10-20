@@ -22,15 +22,26 @@ public class Stack {
 
     }
 
-    public void pop(){
-
-        head = head.next;
-
+    public char pop(){
+        char popped = Character.MIN_VALUE;
+        if (head == null) {
+            System.out.println("Stack is Empty");
+        }
+        else {
+            popped = head.data;
+            head = head.next;
+        }
+        return popped;
     }
 
     public char peek(){
-
-       return head.data;
+        if (head == null) {
+            System.out.println("Stack is empty");
+            return Character.MIN_VALUE;
+        }
+        else {
+            return head.data;
+        }
 
     }
 
@@ -46,4 +57,23 @@ public class Stack {
 
     }
 
+}
+
+class Main {
+    // Driver code
+    public static void main(String[] args) {
+
+        Stack sll = new Stack();
+
+        sll.push('a');
+        sll.push('b');
+        sll.push('c');
+
+        sll.display();
+
+        sll.pop();
+        System.out.println("popped from stack");
+
+        System.out.println("Top element is " + sll.peek());
+    }
 }
