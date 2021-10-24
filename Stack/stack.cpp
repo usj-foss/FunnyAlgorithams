@@ -73,7 +73,7 @@ int main() {
     cout << stk.peek() << " is the peek value\n";
 
     // isEmpty
-    if (stk.isEmpty() < 0){
+    if (stk.isEmpty() == 0){
         cout<< "Empty\n";
     }
     else {
