@@ -15,6 +15,11 @@ public:
     void printInOrder(Node* root);		    //Print the values in the tree using In-order
     void printPostOrder(Node* root);	    //Print the values in the tree using Post-order
     Node* search(Node* root, int );		    //Search a given value in the tree
+    unsigned int countNodes(Node* root);    //Count the number of nodes in the current tree
+    int getHeight(Node* root);			    //Get the height of the tree
+    int searchMin(Node* root);			    //Find the smallest value in the tree
+    int searchMax(Node* root);			    //Find the largest value in the tree
+    void deleteTree(Node* root);		    //Delete the entire tree
     Node* findMin(Node* root);			    //Find the minimum value
 };
 
@@ -124,6 +129,64 @@ Node* BST::search( Node* root, int value) {
     return search(root->left, value);
 }
 
+//Count the number of nodes in the current tree
+unsigned int BST::countNodes(Node* root) {
+    unsigned int count = 1;
+    if (root->left != NULL) {
+        //Get left Element
+        count += countNodes(root->left);
+    }
+    if (root->right != NULL) {
+        //Get Right Element
+        count += countNodes(root->right);
+    }
+    return count;
+}
+
+//Get height of the tree
+int BST::getHeight(Node* root) {
+    //If the tree is empty
+    if (root == NULL)
+        return 0;
+    else {
+        //Get the height of the left sub tree
+        int left = getHeight(root->left);
+        //Get the height of the Right sub tree
+        int right = getHeight(root->right);
+        //Larger one
+        if (left >= right)
+            return left + 1;
+        else
+            return right + 1;
+    }
+}
+
+//Find the Smallest value in the tree
+int BST::searchMin(Node* root) {
+    //Find the leftmost leaf
+    while (root->left != NULL)
+        root = root->left;
+    return root->data;
+}
+
+//Find the Largest value in the tree
+int BST::searchMax(Node* root) {
+    //Find the rightmost leaf
+    while (root->right != NULL)
+        root = root->right;
+    return root->data;
+}
+
+//Delete the entire tree
+void BST::deleteTree(Node* root) {
+    struct Node* temp = root;
+    if (temp == NULL)
+        return;
+    deleteTree(temp->left);
+    deleteTree(temp->right);
+    free(temp);
+}
+
 //Function to find the minimum value
 Node* BST::findMin(Node* root) {
     while (root->left != NULL)
@@ -154,6 +217,11 @@ int main() {
         cout << " 4 - Print In-Order\n";
         cout << " 5 - Print Post-Order\n";
         cout << " 6 - Search a  value\n";
+        cout << " 7 - Count no.of Nodes\n";
+        cout << " 8 - BST Height\n";
+        cout << " 9 - Search Min Value\n";
+        cout << " 10- Search Max Value\n";
+        cout << " 11- Delete tree\n";
         cout << " 0 - Exit\n";
 
         cout << "Enter Your Choice : ";
@@ -201,6 +269,35 @@ int main() {
                     cout << "Element Found" << endl;
                 else
                     cout << "Element Not Found" << endl;
+                break;
+
+
+            case 7://Count the number of nodes in the current tree
+                cout << "Number of Nodes : ";
+                cout << tree.countNodes(root);
+                cout << endl;
+                break;
+
+            case 8://Get the height of the tree
+                cout << "Height is : ";
+                cout << tree.getHeight(root);
+                break;
+
+            case 9://Find the smallest value in the tree
+                cout << "Minimum Value is : ";
+                cout << tree.searchMin(root);
+                break;
+
+            case 10://Find the largest value in the tree
+                cout << "Maximum Value is :  ";
+                cout << tree.searchMax(root);
+                break;
+
+            case 11:
+                //Delete the entire tree
+                cout << "Tree deleted successfully\n";
+                tree.deleteTree(root);
+                root = NULL;
                 break;
 
             case 0:
