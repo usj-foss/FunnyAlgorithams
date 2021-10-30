@@ -1,3 +1,5 @@
+#Linked list in python
+
 class Node:
 
 	def __init__(self, data):
@@ -14,7 +16,6 @@ class LinkedList:
 		while (temp):
 			print (temp.data)
 			temp = temp.next
-
 
 if __name__=='__main__':
 
