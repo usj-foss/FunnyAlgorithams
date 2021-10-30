@@ -1,8 +1,16 @@
 ## Funny Algorithms
+![image](https://user-images.githubusercontent.com/66766682/139557248-9b6ae99d-d8a2-4eac-932d-83787d102817.png)
+
 
 _A repository with a bunch of funny algorithms, beginners friendly :sparkles:_
 
 _Don't forget to read our [Contributing Guide](https://github.com/usj-foss/FunnyAlgorithams/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/usj-foss/FunnyAlgorithams/blob/main/CODE_OF_CONDUCT.md)_
+
+## Contributors
+
+<a href="https://github.com/GitHubExperts-LK/GitHubExperts-LK.github.io/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=usj-foss/FunnyAlgorithams" />
+</a>
 
 ## Algorithms are fun, right?
 
